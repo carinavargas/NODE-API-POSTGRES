@@ -15,10 +15,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use((req, res, next) => {
-  const error = new Error('Something went wrong');
-  next(error);
-});
 // Error-handling Middleware
 app.use((err, req, res, next) => {
   console.error('Error:', err.message);
@@ -57,12 +53,3 @@ function isAdmin(req, res, next) {
 
 const { body, validationResult } = require('express-validator');
 
-app.post('/users', [
-    // add validation rules
-], (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(422).json({ errors: errors.array() });
-    }
-    // Process the request
-});
